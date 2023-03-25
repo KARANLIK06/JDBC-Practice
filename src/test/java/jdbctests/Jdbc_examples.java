@@ -48,7 +48,7 @@ public class Jdbc_examples {
     public void test2() throws SQLException {
 
         Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
-        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
         ResultSet resultSet = statement.executeQuery("SELECT * FROM departments");
 
         // how to find how many rows we have for the query
@@ -63,7 +63,7 @@ public class Jdbc_examples {
         resultSet.beforeFirst();
 
         // print all second column information
-        while (resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getString(2));
         }
 
@@ -71,5 +71,19 @@ public class Jdbc_examples {
         resultSet.close();
         statement.close();
         connection.close();
+    }
+        @Test
+        public void test3() throws SQLException {
+
+            Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM departments");
+
+
+
+            // close connection
+            resultSet.close();
+            statement.close();
+            connection.close();
     }
 }
