@@ -40,7 +40,7 @@ public class DButilPractice {
                 "from employees\n" +
                 "where rownum <2";
 
-        List<Map<String, Object>> rowMap = DBUtils.getQueryResultMap(query);// DBUtils.getQueryResultMap(query);  -->  ALT+ENTER --> ENTER
+        Map<String, Object> rowMap = DBUtils.getRowMap(query);
 
         // print the result
 
