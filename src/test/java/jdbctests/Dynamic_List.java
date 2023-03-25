@@ -3,10 +3,7 @@ package jdbctests;
 import org.junit.jupiter.api.Test;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Dynamic_List {
 
@@ -27,6 +24,36 @@ public class Dynamic_List {
         // in order to get column names we need ResultSetMetaData
         ResultSetMetaData rsmd = resultSet.getMetaData();
 
+        //list of maps to keep all information
+        List<Map<String,Object>> queryData = new ArrayList<>();
+
+        //number of columns
+        int colCount = rsmd.getColumnCount();
+
+
+        //loop through each row
+        while (resultSet.next()){
+
+            Map<String,Object> row = new LinkedHashMap<>();
+
+            //some code to fill the dynamically
+            for (int i = 1; i <= colCount; i++) {
+              row.put(rsmd.getColumnName(i), resultSet.getObject(i) );
+            }
+
+
+
+            //add ready map row to the list
+            queryData.add(row);
+
+    }
+
+
+
+    //print each row inside the list
+        for (Map<String, Object> row : queryData) {
+            System.out.println(row.toString());
+        }
 
 
 
