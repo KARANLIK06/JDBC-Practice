@@ -79,6 +79,38 @@ public class Jdbc_examples {
             Statement statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
             ResultSet resultSet = statement.executeQuery("SELECT * FROM departments");
 
+            // get the database related data inside the dbMetadata object
+            DatabaseMetaData databaseMetaData = connection.getMetaData();
+            System.out.println("databaseMetaData.getUserName() = " + databaseMetaData.getUserName());
+            System.out.println("databaseMetaData.getDatabaseProductName() = " + databaseMetaData.getDatabaseProductName());
+            System.out.println("databaseMetaData.getDatabaseProductVersion() = " + databaseMetaData.getDatabaseProductVersion());
+            System.out.println("databaseMetaData.getDriverName() = " + databaseMetaData.getDriverName());
+            System.out.println("databaseMetaData.getDriverVersion() = " + databaseMetaData.getDriverVersion());
+
+            // get the resultsetmetadata // rsmd
+            ResultSetMetaData resultSetMetaData= resultSet.getMetaData();
+
+            // how many columns we have?
+            int columnCount= resultSetMetaData.getColumnCount();
+            System.out.println(columnCount);
+
+            // getting column names
+            System.out.println(resultSetMetaData.getColumnName(1));
+            System.out.println(resultSetMetaData.getColumnName(2));
+            System.out.println(resultSetMetaData.getColumnName(3));
+            System.out.println(resultSetMetaData.getColumnName(4));
+
+            System.out.println("=============================================");
+
+
+            //resultSetMetaData.getColumnName(i) --> gets column name
+            //resultSetMetaData.getColumnCount() --> total number of columns
+
+            // print all the column names dynamically
+            for (int i = 1; i <= columnCount ; i++) {
+                System.out.println(resultSetMetaData.getColumnName(i));
+            }
+
 
 
             // close connection
